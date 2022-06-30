@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.Objects;
 
-@MongoEntity(collection = "Fights")
+@MongoEntity(collection = "fights")
 @Schema(description = "Each fight has a winner and a loser")
 public class Fight extends PanacheMongoEntity {
     @NotNull
