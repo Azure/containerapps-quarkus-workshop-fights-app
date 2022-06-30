@@ -34,7 +34,7 @@ public class FightResource {
     }
 
     @GET
-    @Path("/randomfighters")
+    @Path("/random")
     public Response getRandomFighters() {
         Fighters fighters = service.findRandomFighters();
         logger.debug("Get random fighters " + fighters);
