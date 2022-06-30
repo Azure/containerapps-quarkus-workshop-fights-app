@@ -13,7 +13,7 @@ public class MockVillainProxy implements VillainProxy {
     public static final String DEFAULT_VILLAIN_NAME = "Super Chocolatine";
     public static final String DEFAULT_VILLAIN_PICTURE = "super_chocolatine.png";
     public static final String DEFAULT_VILLAIN_POWERS = "does not eat pain au chocolat";
-    public static final int DEFAULT_VILLAIN_LEVEL = 42;
+    public static final int DEFAULT_VILLAIN_LEVEL = 1;
 
     @Override
     public Villain findRandomVillain() {
