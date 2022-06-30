@@ -18,4 +18,21 @@ public class FightResourceTest {
              .body(is("Hello from Fight Resource"));
     }
 
+    @Test
+    public void testHelloVillainEndpoint() {
+        given()
+          .when().get("/api/fights/hello/villains")
+          .then()
+             .statusCode(200)
+             .body(is("Hello from Villain Mock"));
+    }
+
+    @Test
+    public void testHelloHeroEndpoint() {
+        given()
+          .when().get("/api/fights/hello/heroes")
+          .then()
+             .statusCode(200)
+             .body(is("Hello from Hero Mock"));
+    }
 }
