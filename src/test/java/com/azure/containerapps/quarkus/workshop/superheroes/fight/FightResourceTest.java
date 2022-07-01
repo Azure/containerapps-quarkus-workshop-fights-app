@@ -68,7 +68,7 @@ public class FightResourceTest {
     @Test
     void shouldGetRandomFighters() {
         given()
-            .when().get("/api/fights/randomfighters")
+            .when().get("/api/fights/fighters")
             .then()
             .statusCode(OK.getStatusCode())
             .contentType(APPLICATION_JSON)

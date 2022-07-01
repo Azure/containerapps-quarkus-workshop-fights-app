@@ -34,22 +34,26 @@ public class FightResource {
     }
 
     @GET
-    @Path("/random")
+    @Path("/fighters")
     public Response getRandomFighters() {
+        logger.info("Get random fighters");
         Fighters fighters = service.findRandomFighters();
-        logger.debug("Get random fighters " + fighters);
+        logger.debug("Get random fighters : " + fighters);
         return Response.ok(fighters).build();
     }
 
     @GET
     public Response getAllFights() {
+        logger.info("Get all the fights");
         List<Fight> fights = service.findAllFights();
-        logger.debug("Total number of fights " + fights);
+        logger.debug("Total number of fights : " + fights.size());
         return Response.ok(fights).build();
     }
 
     @POST
-    public Fight fight(@Valid Fighters fighters, UriInfo uriInfo) {
+    public Fight fight(@Valid Fighters fighters) {
+        logger.info("Fight");
+        logger.debug("Fight between : " + fighters);
         return service.fight(fighters);
     }
 
@@ -69,6 +73,7 @@ public class FightResource {
     @Tag(name = "hello")
     @Operation(summary = "Ping Heroes hello")
     public String helloHeroes() {
+        logger.info("Ping Heroes hello");
         return service.helloHeroes();
     }
 
@@ -78,6 +83,7 @@ public class FightResource {
     @Tag(name = "hello")
     @Operation(summary = "Ping Villains hello")
     public String helloVillains() {
+        logger.info("Ping Villains hello");
         return service.helloVillains();
     }
 }
