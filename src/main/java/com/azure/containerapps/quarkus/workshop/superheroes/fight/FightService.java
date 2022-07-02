@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.Random;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 @ApplicationScoped
 public class FightService {
 
     Logger logger;
-
     HeroProxy heroProxy;
     VillainProxy villainProxy;
 
@@ -36,6 +36,7 @@ public class FightService {
         this.logger = logger;
     }
 
+    @Transactional(SUPPORTS)
     public List<Fight> findAllFights() {
         return Fight.listAll();
     }
