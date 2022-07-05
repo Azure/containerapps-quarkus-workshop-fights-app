@@ -1,7 +1,5 @@
 package com.azure.containerapps.quarkus.workshop.superheroes.fight;
 
-import io.smallrye.mutiny.Uni;
-import org.eclipse.microprofile.faulttolerance.Timeout;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -18,19 +16,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 
 @Path("/api/fights")
-@Tag(name = "fights")
+@Tag(name = "fight")
 @ApplicationScoped
 @Produces(MediaType.APPLICATION_JSON)
 public class FightResource {
 
     Logger logger;
+
     FightService service;
 
     @Inject
@@ -41,7 +39,7 @@ public class FightResource {
 
     @GET
     @Path("/fighters")
-    @Operation(summary = "Returns two random fighters: a hero and a villain")
+    @Operation(operationId = "getRandomFighters", summary = "Returns two random fighters: a hero and a villain")
     @APIResponse(
         responseCode = "200",
         content = @Content(mediaType = APPLICATION_JSON, schema = @Schema(implementation = Fighters.class, required = true))
@@ -54,7 +52,7 @@ public class FightResource {
     }
 
     @GET
-    @Operation(summary = "Returns all the fights")
+    @Operation(operationId = "getAllFights", summary = "Returns all the fights")
     @APIResponse(
         responseCode = "200",
         content = @Content(mediaType = APPLICATION_JSON, schema = @Schema(implementation = Fight.class))
@@ -67,7 +65,7 @@ public class FightResource {
     }
 
     @POST
-    @Operation(summary = "Takes a hero and a villain and make them fight")
+    @Operation(operationId = "fight", summary = "Takes a hero and a villain and make them fight")
     @APIResponse(responseCode = "201")
     public Fight fight(@Valid Fighters fighters) {
         logger.info("Fight");
@@ -78,8 +76,7 @@ public class FightResource {
     @GET
     @Path("/hello")
     @Produces(MediaType.TEXT_PLAIN)
-    @Tag(name = "hello")
-    @Operation(summary = "Returns hello from the Fight Resource")
+    @Operation(operationId = "hello", summary = "Returns hello from the Fight resource")
     public String hello() {
         logger.info("Hello from Fight Resource");
         return "Hello from Fight Resource";
@@ -88,20 +85,18 @@ public class FightResource {
     @GET
     @Path("/hello/heroes")
     @Produces(MediaType.TEXT_PLAIN)
-    @Tag(name = "hello")
-    @Operation(summary = "Ping Heroes hello")
+    @Operation(operationId = "helloHeroes", summary = "Returns hello from the Heroes resource through the Fight resource")
     public String helloHeroes() {
-        logger.info("Ping Heroes hello");
+        logger.info("Hello from the Heroes resource through the Fight resource");
         return service.helloHeroes();
     }
 
     @GET
     @Produces(TEXT_PLAIN)
     @Path("/hello/villains")
-    @Tag(name = "hello")
-    @Operation(summary = "Ping Villains hello")
+    @Operation(operationId = "helloVillains", summary = "Returns hello from the Villains resource through the Fight resource")
     public String helloVillains() {
-        logger.info("Ping Villains hello");
+        logger.info("Hello from the Villains resource through the Fight resource");
         return service.helloVillains();
     }
 }

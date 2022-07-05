@@ -7,7 +7,6 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
-import java.util.Objects;
 
 @MongoEntity(collection = "fights")
 @Schema(description = "Each fight has a winner and a loser")

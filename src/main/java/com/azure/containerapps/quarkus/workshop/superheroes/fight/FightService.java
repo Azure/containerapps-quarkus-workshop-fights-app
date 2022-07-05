@@ -24,7 +24,9 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 public class FightService {
 
     Logger logger;
+
     HeroProxy heroProxy;
+
     VillainProxy villainProxy;
 
     private final Random random = new Random();

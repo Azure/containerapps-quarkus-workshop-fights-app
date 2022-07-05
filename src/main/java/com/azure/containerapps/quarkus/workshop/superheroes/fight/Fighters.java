@@ -10,12 +10,15 @@ import javax.validation.constraints.NotNull;
 /**
  * Entity class representing Fighters
  */
-@Schema(description="A fight between one hero and one villain")
+@Schema(description = "A fight between one hero and one villain")
 public class Fighters {
 
-    @NotNull @Valid
+    @NotNull
+    @Valid
     public Hero hero;
-    @NotNull @Valid
+
+    @NotNull
+    @Valid
     public Villain villain;
 
 }
